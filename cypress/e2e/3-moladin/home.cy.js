@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('spec.cy.js', () => {
+describe('home.cy.js', () => {
   beforeEach(() => {
     cy.visit('https://www.moladin.com')
   })
@@ -43,8 +43,33 @@ describe('spec.cy.js', () => {
 
   it('should see how it works section', () => {
     cy.get('.how-work-section').should('contain', 'Bagaimana cara kerja Moladin?')
+
+    // Check Beli Mobil Bekas Button
     cy.get('.how-work').should('contain', 'Beli Mobil Bekas').click()
     cy.get('.how-work button').should('contain', 'Beli Mobil Bekas').should('have.class', 'btn btn-primary')
+
+     // Check Jual Mobil Bekas Button
+     cy.get('.how-work').should('contain', 'Jual Mobil Bekas').click()
+     cy.get('.how-work button').should('contain', 'Jual Mobil Bekas').should('have.class', 'btn btn-primary')
+  })
+
+  it('should see testimoni section', () => {
+    cy.get('.testimoni-section').should('contain', 'Testimoni Pengguna Moladin')
+  })
+
+  it('should see artikel section', () => {
+    cy.get('.artikel-section').should('contain', 'Artikel dan Berita Terbaru')
+  })
+
+  it('should go to blog page', () => {
+    cy.get('.artikel-section').should('contain', 'Artikel dan Berita Terbaru')
+    cy.get('.article #link').should('contain', 'Lihat Semua Artikel').click()
+    cy.url().should('include', '/blog')
+    cy.title().should('contain', 'Berita Otomotif Terbaru & Terkini')
+  })
+
+  it('should see faq section', () => {
+    cy.get('.question-section').should('contain', 'Yang Sering Ditanyakan')
   })
 })
 
